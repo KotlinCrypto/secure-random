@@ -16,9 +16,11 @@
 package org.kotlincrypto.internal
 
 import kotlinx.cinterop.Pinned
-import kotlinx.cinterop.UnsafeNumber
 import kotlinx.cinterop.addressOf
+import kotlinx.cinterop.UnsafeNumber
 import kotlinx.cinterop.convert
+import platform.Security.SecRandomCopyBytes
+import platform.Security.kSecRandomDefault
 import org.kotlincrypto.SecRandomCopyException
 
 /**
