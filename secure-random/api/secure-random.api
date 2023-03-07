@@ -1,1 +1,13 @@
+public final class org/kotlincrypto/SecRandomCopyException : java/lang/RuntimeException {
+	public fun <init> ()V
+	public fun <init> (Ljava/lang/String;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/Throwable;)V
+	public fun <init> (Ljava/lang/Throwable;)V
+}
+
+public final class org/kotlincrypto/SecureRandom : java/security/SecureRandom {
+	public fun <init> ()V
+	public final fun nextBytesCopyTo ([B)V
+	public final fun nextBytesOf (I)[B
+}
 
