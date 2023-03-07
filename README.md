@@ -30,8 +30,8 @@ class, it provides a simple API surface area. Under the hood it
 utilizes system functions so that `SecureRandom` is accessible from 
 common code. 
 
-Heavily inspired by the [rust-random/getrandom][url-rust-random] crate 
-for the native Linux/Android implementation.
+The Linux/Android implementation was Heavily inspired by the 
+[rust-random/getrandom][url-rust-random] crate.
 
 ### Example Usages
 
