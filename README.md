@@ -72,6 +72,10 @@ See the [sample](sample/README.md)
 
 ### Get Started
 
+
+The best way to keep `KotlinCrypto` dependencies up to date is by using the 
+[version-catalog][url-version-catalog]. Alternatively, see below.
+
 <!-- TAG_VERSION -->
 
 ```kotlin
@@ -119,3 +123,4 @@ dependencies {
 [url-license]: https://www.apache.org/licenses/LICENSE-2.0.txt
 [url-kotlin]: https://kotlinlang.org
 [url-rust-random]: https://github.com/rust-random/getrandom
+[url-version-catalog]: https://github.com/KotlinCrypto/version-catalog
