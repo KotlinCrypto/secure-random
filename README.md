@@ -25,12 +25,12 @@
 -->
 
 Kotlin Multiplatform library for obtaining cryptographically 
-secure random data from the system. Modeled after Java's `SecureRandom` 
-class, it provides a simple API surface area. Under the hood it 
-utilizes system functions so that `SecureRandom` is accessible from 
-common code. 
+secure random data from the system. 
 
-The Linux/Android implementation was Heavily inspired by the 
+NOTE: For Jvm, `SecureRandom` extends `java.security.SecureRandom` 
+for interoperability.
+
+The Linux/AndroidNative implementation was Heavily inspired by the 
 [rust-random/getrandom][url-rust-random] crate.
 
 ### Example Usages
