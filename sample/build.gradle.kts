@@ -24,9 +24,7 @@ kmpConfiguration {
         jvm {
             pluginIds("application")
 
-            target {
-                withJava()
-            }
+            target { withJava() }
 
             kotlinJvmTarget = JavaVersion.VERSION_1_8
             compileSourceCompatibility = JavaVersion.VERSION_1_8
@@ -41,19 +39,51 @@ kmpConfiguration {
             }
         }
 
-        val osName = System.getProperty("os.name")
+        val X86 = "x86"
+        val X64 = "x64"
+        val ARM64 = "arm64"
+
+        val arch = when (System.getProperty("os.arch")) {
+            X86 -> X86
+            "i386" -> X86
+            "i486" -> X86
+            "i586" -> X86
+            "i686" -> X86
+            "pentium" -> X86
+
+            X64 -> X64
+            "x86_64" -> X64
+            "amd64" -> X64
+            "em64t" -> X64
+            "universal" -> X64
+
+            ARM64 -> ARM64
+            "aarch64" -> ARM64
+            else -> null
+        }
+
+        val os = org.gradle.internal.os.OperatingSystem.current()
+        val targetName = "nativeSample"
+
         when {
-            osName.startsWith("Windows", true) -> {
-                mingwX64("nativeSample") { target { setup() } }
+            os.isLinux -> {
+                when (arch) {
+                    ARM64 -> linuxArm64(targetName) { target { setup() } }
+                    X64 -> linuxX64(targetName) { target { setup() } }
+                }
             }
-            osName == "Mac OS X" -> {
-                macosX64("nativeSample") { target { setup() } }
+            os.isMacOsX -> {
+                when (arch) {
+                    ARM64 -> macosArm64(targetName) { target { setup() } }
+                    X64 -> macosX64(targetName) { target { setup() } }
+                }
             }
-            osName.contains("Mac", true) -> {
-                macosArm64("nativeSample") { target { setup() } }
-            }
-            osName == "Linux" -> {
-                linuxX64("nativeSample") { target { setup() } }
+            os.isWindows -> {
+                @Suppress("DEPRECATION")
+                when (arch) {
+                    X64 -> mingwX64(targetName) { target { setup() } }
+                    X86 -> mingwX86(targetName) { target { setup() } }
+                }
             }
         }
 
