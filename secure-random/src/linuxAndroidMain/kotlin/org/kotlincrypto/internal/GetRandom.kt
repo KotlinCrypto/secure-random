@@ -36,6 +36,7 @@ import platform.posix.*
  * @see [isAvailable]
  * @see [getrandom]
  * */
+@OptIn(ExperimentalForeignApi::class, UnsafeNumber::class)
 internal class GetRandom private constructor(): SecRandomSynchronized() {
 
     internal companion object {
@@ -54,7 +55,6 @@ internal class GetRandom private constructor(): SecRandomSynchronized() {
      * */
     internal fun isAvailable(): Boolean {
         return synchronizedRemember { buf, size ->
-            @OptIn(UnsafeNumber::class)
             val result = getrandom(buf, size.toULong().convert(), GRND_NONBLOCK)
             if (result < 0) {
                 when (errno) {
@@ -74,7 +74,6 @@ internal class GetRandom private constructor(): SecRandomSynchronized() {
      * Must always call [isAvailable] beforehand to ensure
      * availability on the system.
      * */
-    @OptIn(UnsafeNumber::class)
     @Throws(SecRandomCopyException::class)
     internal fun getrandom(buf: Pinned<ByteArray>, buflen: Int) {
         buf.fillCompletely(buflen) { ptr, len ->
@@ -82,7 +81,6 @@ internal class GetRandom private constructor(): SecRandomSynchronized() {
         }
     }
 
-    @OptIn(UnsafeNumber::class)
     private fun getrandom(
         buf: CPointer<ByteVar>,
         buflen: size_t,

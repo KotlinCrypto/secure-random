@@ -15,12 +15,10 @@
  **/
 package org.kotlincrypto.internal
 
-import kotlinx.cinterop.ByteVar
-import kotlinx.cinterop.CPointer
-import kotlinx.cinterop.addressOf
-import kotlinx.cinterop.usePinned
-import kotlin.native.concurrent.AtomicInt
+import kotlinx.cinterop.*
+import kotlin.concurrent.AtomicInt
 
+@OptIn(ExperimentalForeignApi::class)
 internal abstract class SecRandomSynchronized {
 
     private companion object {

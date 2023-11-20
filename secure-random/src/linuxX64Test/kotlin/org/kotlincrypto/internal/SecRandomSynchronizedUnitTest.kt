@@ -17,15 +17,16 @@
 
 package org.kotlincrypto.internal
 
+import kotlinx.cinterop.ExperimentalForeignApi
 import kotlinx.coroutines.*
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import kotlinx.coroutines.test.runTest
-import kotlin.native.concurrent.AtomicInt
+import kotlin.concurrent.AtomicInt
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
-@OptIn(ExperimentalCoroutinesApi::class)
+@OptIn(ExperimentalCoroutinesApi::class, ExperimentalForeignApi::class)
 class SecRandomSynchronizedUnitTest {
 
     private class TestSynchronized: SecRandomSynchronized() {
@@ -45,7 +46,7 @@ class SecRandomSynchronizedUnitTest {
             }
 
             if (calledBefore) {
-                loadedCount.increment()
+                loadedCount.incrementAndGet()
             }
         }
 
@@ -61,7 +62,7 @@ class SecRandomSynchronizedUnitTest {
                 true
             }
 
-            invocationCount.increment()
+            invocationCount.incrementAndGet()
         }
     }
 

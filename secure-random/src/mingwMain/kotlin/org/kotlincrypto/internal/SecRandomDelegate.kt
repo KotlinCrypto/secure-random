@@ -13,12 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  **/
+@file:Suppress("EXPECT_ACTUAL_CLASSIFIERS_ARE_IN_BETA_WARNING")
+
 package org.kotlincrypto.internal
 
-import kotlinx.cinterop.Pinned
-import kotlinx.cinterop.addressOf
-import kotlinx.cinterop.convert
-import kotlinx.cinterop.reinterpret
+import kotlinx.cinterop.*
 import org.kotlincrypto.SecRandomCopyException
 import platform.windows.BCRYPT_USE_SYSTEM_PREFERRED_RNG
 import platform.windows.BCryptGenRandom
@@ -28,6 +27,7 @@ import platform.windows.STATUS_INVALID_PARAMETER
 /**
  * https://learn.microsoft.com/en-us/windows/win32/api/bcrypt/nf-bcrypt-bcryptgenrandom
  * */
+@OptIn(ExperimentalForeignApi::class)
 internal actual abstract class SecRandomDelegate private actual constructor() {
 
     @Throws(SecRandomCopyException::class)
@@ -41,7 +41,7 @@ internal actual abstract class SecRandomDelegate private actual constructor() {
                 null,
                 bytes.addressOf(0).reinterpret(),
                 size.toULong().convert(),
-                BCRYPT_USE_SYSTEM_PREFERRED_RNG,
+                BCRYPT_USE_SYSTEM_PREFERRED_RNG.convert(),
             ).toUInt()
 
             when (status) {

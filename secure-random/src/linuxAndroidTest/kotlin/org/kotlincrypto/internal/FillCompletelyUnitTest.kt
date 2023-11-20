@@ -15,12 +15,15 @@
  **/
 package org.kotlincrypto.internal
 
+import kotlinx.cinterop.ExperimentalForeignApi
+import kotlinx.cinterop.UnsafeNumber
 import kotlinx.cinterop.set
 import kotlinx.cinterop.usePinned
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
+@OptIn(ExperimentalForeignApi::class)
 class FillCompletelyUnitTest {
 
     @Test

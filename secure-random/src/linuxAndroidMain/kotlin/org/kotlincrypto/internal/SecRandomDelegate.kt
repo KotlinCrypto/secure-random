@@ -13,11 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  **/
+@file:Suppress("EXPECT_ACTUAL_CLASSIFIERS_ARE_IN_BETA_WARNING")
+
 package org.kotlincrypto.internal
 
+import kotlinx.cinterop.ExperimentalForeignApi
 import kotlinx.cinterop.Pinned
 import org.kotlincrypto.SecRandomCopyException
 
+@OptIn(ExperimentalForeignApi::class)
 internal actual abstract class SecRandomDelegate private actual constructor() {
 
     @Throws(SecRandomCopyException::class)

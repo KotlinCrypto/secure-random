@@ -13,12 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  **/
+@file:Suppress("EXPECT_ACTUAL_CLASSIFIERS_ARE_IN_BETA_WARNING")
+
 package org.kotlincrypto.internal
 
-import kotlinx.cinterop.Pinned
-import kotlinx.cinterop.addressOf
-import kotlinx.cinterop.UnsafeNumber
-import kotlinx.cinterop.convert
+import kotlinx.cinterop.*
 import platform.Security.SecRandomCopyBytes
 import platform.Security.kSecRandomDefault
 import org.kotlincrypto.SecRandomCopyException
@@ -26,6 +25,7 @@ import org.kotlincrypto.SecRandomCopyException
 /**
  * https://developer.apple.com/documentation/security/1399291-secrandomcopybytes
  * */
+@OptIn(ExperimentalForeignApi::class, UnsafeNumber::class)
 internal actual abstract class SecRandomDelegate private actual constructor() {
 
     @Throws(SecRandomCopyException::class)
@@ -33,7 +33,6 @@ internal actual abstract class SecRandomDelegate private actual constructor() {
 
     internal actual companion object: SecRandomDelegate() {
 
-        @OptIn(UnsafeNumber::class)
         @Throws(SecRandomCopyException::class)
         actual override fun nextBytesCopyTo(bytes: Pinned<ByteArray>, size: Int) {
             // kSecRandomDefault is synonymous to NULL

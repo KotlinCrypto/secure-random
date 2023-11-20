@@ -15,10 +15,7 @@
  **/
 package org.kotlincrypto.internal
 
-import kotlinx.cinterop.ByteVarOf
-import kotlinx.cinterop.allocArray
-import kotlinx.cinterop.memScoped
-import kotlinx.cinterop.toKStringFromUtf8
+import kotlinx.cinterop.*
 import platform.windows.DWORD
 import platform.windows.FORMAT_MESSAGE_FROM_SYSTEM
 import platform.windows.FORMAT_MESSAGE_IGNORE_INSERTS
@@ -27,6 +24,7 @@ import platform.windows.SUBLANG_DEFAULT
 import platform.windows.FormatMessageA
 
 /* https://github.com/square/okio/blob/master/okio/src/mingwX64Main/kotlin/okio/-Windows.kt */
+@OptIn(ExperimentalForeignApi::class)
 internal fun errorToString(error: DWORD): String {
     memScoped {
         val messageMaxSize = 2048

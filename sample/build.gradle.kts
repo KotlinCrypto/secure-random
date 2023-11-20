@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  **/
+import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 
 plugins {
@@ -22,9 +23,14 @@ plugins {
 kmpConfiguration {
     configure {
         jvm {
-            pluginIds("application")
+            target {
+                withJava()
 
-            target { withJava() }
+                @OptIn(ExperimentalKotlinGradlePluginApi::class)
+                mainRun {
+                    mainClass.set("MainKt")
+                }
+            }
 
             kotlinJvmTarget = JavaVersion.VERSION_1_8
             compileSourceCompatibility = JavaVersion.VERSION_1_8
@@ -79,10 +85,8 @@ kmpConfiguration {
                 }
             }
             os.isWindows -> {
-                @Suppress("DEPRECATION")
                 when (arch) {
                     X64 -> mingwX64(targetName) { target { setup() } }
-                    X86 -> mingwX86(targetName) { target { setup() } }
                 }
             }
         }
@@ -91,16 +95,6 @@ kmpConfiguration {
             sourceSetMain {
                 dependencies {
                     implementation(project(":secure-random"))
-                }
-            }
-        }
-
-        kotlin {
-            sourceSets {
-                findByName("jvmMain")?.let {
-                    extensions.configure<JavaApplication>("application") {
-                        mainClass.set("MainKt")
-                    }
                 }
             }
         }
