@@ -13,8 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  **/
+@file:Suppress("EXPECT_ACTUAL_CLASSIFIERS_ARE_IN_BETA_WARNING")
+
 package org.kotlincrypto
 
+import kotlinx.cinterop.ExperimentalForeignApi
 import kotlinx.cinterop.usePinned
 import org.kotlincrypto.internal.commonNextBytesOf
 import org.kotlincrypto.internal.ifNotNullOrEmpty
@@ -49,6 +52,7 @@ public actual class SecureRandom {
     @Throws(SecRandomCopyException::class)
     public actual fun nextBytesCopyTo(bytes: ByteArray?) {
         bytes.ifNotNullOrEmpty {
+            @OptIn(ExperimentalForeignApi::class)
             usePinned { pinned ->
                 delegate.nextBytesCopyTo(pinned, size)
             }

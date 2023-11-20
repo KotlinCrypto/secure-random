@@ -15,10 +15,12 @@
  **/
 package org.kotlincrypto.internal
 
+import kotlinx.cinterop.ExperimentalForeignApi
 import kotlinx.cinterop.toKStringFromUtf8
 import org.kotlincrypto.SecRandomCopyException
 import platform.posix.strerror
 
+@OptIn(ExperimentalForeignApi::class)
 internal fun errnoToSecRandomCopyException(errno: Int): SecRandomCopyException {
     val message = strerror(errno)?.toKStringFromUtf8() ?: "errno: $errno"
     return SecRandomCopyException(message)

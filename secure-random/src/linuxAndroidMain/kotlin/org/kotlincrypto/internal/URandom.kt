@@ -18,9 +18,9 @@
 package org.kotlincrypto.internal
 
 import kotlinx.cinterop.*
-import kotlin.native.concurrent.AtomicInt
 import org.kotlincrypto.SecRandomCopyException
 import platform.posix.*
+import kotlin.concurrent.AtomicInt
 
 /**
  * Helper for:
@@ -35,6 +35,7 @@ import platform.posix.*
  * @see [SecRandomSynchronized]
  * @see [readBytesTo]
  * */
+@OptIn(ExperimentalForeignApi::class, UnsafeNumber::class)
 internal class URandom private constructor(): SecRandomSynchronized() {
 
     internal companion object {
@@ -56,7 +57,6 @@ internal class URandom private constructor(): SecRandomSynchronized() {
         ensureSeeded()
 
         lock.withLock {
-            @OptIn(UnsafeNumber::class)
             withReadOnlyFD("/dev/urandom") { fd ->
                 buf.fillCompletely(buflen) { ptr, length ->
                     read(fd, ptr, length.toULong().convert()).convert()
@@ -84,8 +84,7 @@ internal class URandom private constructor(): SecRandomSynchronized() {
                     }
 
                     while (true) {
-                        @OptIn(UnsafeNumber::class)
-                        val result = poll(pollFd.ptr, 1, INFINITE_TIMEOUT)
+                        val result = poll(pollFd.ptr, 1u, INFINITE_TIMEOUT)
                         if (result >= 0) {
                             break
                         }

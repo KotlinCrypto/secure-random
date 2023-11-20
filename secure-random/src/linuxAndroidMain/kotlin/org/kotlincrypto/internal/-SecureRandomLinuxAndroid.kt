@@ -15,10 +15,7 @@
  **/
 package org.kotlincrypto.internal
 
-import kotlinx.cinterop.ByteVar
-import kotlinx.cinterop.CPointer
-import kotlinx.cinterop.Pinned
-import kotlinx.cinterop.addressOf
+import kotlinx.cinterop.*
 import platform.posix.EINTR
 import platform.posix.errno
 
@@ -29,6 +26,7 @@ import platform.posix.errno
  * this ensures that the call is repeated until it has been
  * completely filled.
  * */
+@OptIn(ExperimentalForeignApi::class)
 internal inline fun Pinned<ByteArray>.fillCompletely(
     size: Int,
     block: (ptr: CPointer<ByteVar>, length: Int) -> Int
