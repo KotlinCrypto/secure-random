@@ -18,7 +18,6 @@
 ![badge-support-apple-silicon]
 ![badge-support-js-ir]
 ![badge-support-linux-arm]
-![badge-support-linux-mips]
 
 <!--
 ![badge-platform-wasm]
@@ -81,7 +80,7 @@ The best way to keep `KotlinCrypto` dependencies up to date is by using the
 ```kotlin
 // build.gradle.kts
 dependencies {
-    implementation("org.kotlincrypto:secure-random:0.1.0")
+    implementation("org.kotlincrypto:secure-random:0.2.0")
 }
 ```
 
@@ -90,16 +89,16 @@ dependencies {
 ```groovy
 // build.gradle
 dependencies {
-    implementation "org.kotlincrypto:secure-random:0.1.0"
+    implementation "org.kotlincrypto:secure-random:0.2.0"
 }
 ```
 
 <!-- TAG_VERSION -->
-[badge-latest-release]: https://img.shields.io/badge/latest--release-0.1.0-blue.svg?style=flat
+[badge-latest-release]: https://img.shields.io/badge/latest--release-0.2.0-blue.svg?style=flat
 [badge-license]: https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg?style=flat
 
 <!-- TAG_DEPENDENCIES -->
-[badge-kotlin]: https://img.shields.io/badge/kotlin-1.8.10-blue.svg?logo=kotlin
+[badge-kotlin]: https://img.shields.io/badge/kotlin-1.9.21-blue.svg?logo=kotlin
 
 <!-- TAG_PLATFORMS -->
 [badge-platform-android]: http://img.shields.io/badge/-android-6EDB8D.svg?style=flat
@@ -117,7 +116,6 @@ dependencies {
 [badge-support-apple-silicon]: http://img.shields.io/badge/support-[AppleSilicon]-43BBFF.svg?style=flat
 [badge-support-js-ir]: https://img.shields.io/badge/support-[js--IR]-AAC4E0.svg?style=flat
 [badge-support-linux-arm]: http://img.shields.io/badge/support-[LinuxArm]-2D3F6C.svg?style=flat
-[badge-support-linux-mips]: http://img.shields.io/badge/support-[LinuxMIPS]-2D3F6C.svg?style=flat
 
 [url-latest-release]: https://github.com/KotlinCrypto/secure-random/releases/latest
 [url-license]: https://www.apache.org/licenses/LICENSE-2.0.txt
