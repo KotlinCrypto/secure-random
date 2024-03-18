@@ -1,11 +1,11 @@
 /*
- * Copyright (c) 2023 Matthew Nelson
+ * Copyright (c) 2024 Matthew Nelson
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *         https://www.apache.org/licenses/LICENSE-2.0
+ *     https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -17,6 +17,7 @@
 
 package org.kotlincrypto
 
+import org.khronos.webgl.Int8Array
 import org.kotlincrypto.internal.commonNextBytesOf
 import org.kotlincrypto.internal.ifNotNullOrEmpty
 
@@ -46,13 +47,18 @@ public actual class SecureRandom public actual constructor() {
     public actual fun nextBytesCopyTo(bytes: ByteArray?) {
         bytes.ifNotNullOrEmpty {
             try {
-                if (isNode) {
-                    _require("crypto").randomFillSync(this)
-                } else {
-                    global.crypto.getRandomValues(this)
-                }
+                val array = unsafeCast<Int8Array>()
 
-                Unit
+                if (isNode) {
+                    crypto.randomFillSync(array)
+                } else {
+                    var offset = 0
+                    while (offset < size) {
+                        val len = if (size > 65536) 65536 else size
+                        crypto.getRandomValues(array.subarray(offset, offset + len))
+                        offset += len
+                    }
+                }
             } catch (t: Throwable) {
                 throw SecRandomCopyException("Failed to obtain bytes", t)
             }
@@ -60,29 +66,31 @@ public actual class SecureRandom public actual constructor() {
     }
 
     private companion object {
-        private val isNode: Boolean by lazy {
-            val runtime: String? = try {
-                // May not be available, but should be preferred
-                // method of determining runtime environment.
-                js("(globalThis.process.release.name)") as String
-            } catch (_: Throwable) {
-                null
-            }
-
-            when (runtime) {
-                null -> {
-                    js("(typeof global !== 'undefined' && ({}).toString.call(global) == '[object global]')") as Boolean
-                }
-                "node" -> true
-                else -> false
-            }
-        }
-
-        private val global: dynamic by lazy {
-            js("((typeof global !== 'undefined') ? global : self)")
-        }
-
-        @Suppress("FunctionName", "UNUSED_PARAMETER")
-        private fun _require(name: String): dynamic = js("require(name)")
+        private val isNode: Boolean by lazy { isNodeJs() }
+        private val crypto: Crypto by lazy { if (isNode) cryptoNode() else cryptoBrowser() }
     }
+}
+
+private fun cryptoNode(): Crypto = js("eval('require')('crypto')")
+    .unsafeCast<Crypto>()
+private fun cryptoBrowser(): Crypto = js("(window ? (window.crypto ? window.crypto : window.msCrypto) : self.crypto)")
+    .unsafeCast<Crypto>()
+
+private fun isNodeJs(): Boolean = js(
+    """
+(typeof process !== 'undefined' 
+    && process.versions != null 
+    && process.versions.node != null) ||
+(typeof window !== 'undefined' 
+    && typeof window.process !== 'undefined' 
+    && window.process.versions != null 
+    && window.process.versions.node != null)
+"""
+) as Boolean
+
+private external class Crypto {
+    // Browser
+    fun getRandomValues(array: Int8Array)
+    // Node.js
+    fun randomFillSync(array: Int8Array)
 }
