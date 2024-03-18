@@ -17,6 +17,7 @@ import io.matthewnelson.kmp.configuration.extension.KmpConfigurationExtension
 import io.matthewnelson.kmp.configuration.extension.container.target.KmpConfigurationContainerDsl
 import org.gradle.api.Action
 import org.gradle.api.JavaVersion
+import org.jetbrains.kotlin.gradle.targets.js.dsl.ExperimentalWasmDsl
 
 fun KmpConfigurationExtension.configureShared(
     publish: Boolean = false,
@@ -32,9 +33,25 @@ fun KmpConfigurationExtension.configureShared(
             compileTargetCompatibility = JavaVersion.VERSION_1_8
         }
 
-        js()
-//        wasmJs {}
-//        wasmWasi {}
+        js {
+            target {
+                browser()
+                nodejs()
+            }
+        }
+        @OptIn(ExperimentalWasmDsl::class)
+        wasmJs {
+            target {
+                browser()
+                nodejs()
+            }
+        }
+        @OptIn(ExperimentalWasmDsl::class)
+        wasmWasi {
+            target {
+                nodejs()
+            }
+        }
 
         androidNativeAll()
 

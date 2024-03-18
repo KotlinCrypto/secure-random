@@ -13,14 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  **/
-import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
+import org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootExtension
+import org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootPlugin
+import org.jetbrains.kotlin.gradle.targets.js.npm.tasks.KotlinNpmInstallTask
 import org.jetbrains.kotlin.gradle.targets.js.yarn.YarnPlugin
 import org.jetbrains.kotlin.gradle.targets.js.yarn.YarnRootExtension
 
 plugins {
     alias(libs.plugins.multiplatform) apply(false)
     alias(libs.plugins.binaryCompat)
-    alias(libs.plugins.gradleVersions)
 }
 
 allprojects {
@@ -39,44 +40,21 @@ plugins.withType<YarnPlugin> {
     the<YarnRootExtension>().lockFileDirectory = rootDir.resolve(".kotlin-js-store")
 }
 
-@Suppress("LocalVariableName")
-apiValidation {
-    val CHECK_PUBLICATION = findProperty("CHECK_PUBLICATION") as? String
+plugins.withType<NodeJsRootPlugin> {
+    the<NodeJsRootExtension>().apply {
+        nodeVersion = "21.0.0-v8-canary202309167e82ab1fa2"
+        nodeDownloadBaseUrl = "https://nodejs.org/download/v8-canary"
+    }
 
-    if (CHECK_PUBLICATION != null) {
+    tasks.withType<KotlinNpmInstallTask>().configureEach {
+        args.add("--ignore-engines")
+    }
+}
+
+apiValidation {
+    if (findProperty("CHECK_PUBLICATION") != null) {
         ignoredProjects.add("check-publication")
     } else {
         ignoredProjects.add("sample")
-    }
-}
-
-fun isNonStable(version: String): Boolean {
-    val stableKeyword = listOf("RELEASE", "FINAL", "GA").any { version.uppercase().contains(it) }
-    val regex = "^[0-9,.v-]+(-r)?$".toRegex()
-    val isStable = stableKeyword || regex.matches(version)
-    return isStable.not()
-}
-
-tasks.withType<DependencyUpdatesTask> {
-    // Example 1: reject all non stable versions
-    rejectVersionIf {
-        isNonStable(candidate.version)
-    }
-
-    // Example 2: disallow release candidates as upgradable versions from stable versions
-    rejectVersionIf {
-        isNonStable(candidate.version) && !isNonStable(currentVersion)
-    }
-
-    // Example 3: using the full syntax
-    resolutionStrategy {
-        componentSelection {
-            @Suppress("RedundantSamConstructor")
-            all(Action {
-                if (isNonStable(candidate.version) && !isNonStable(currentVersion)) {
-                    reject("Release candidate")
-                }
-            })
-        }
     }
 }

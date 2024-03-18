@@ -1,10 +1,9 @@
 [versions]
-binaryCompat = "0.13.2"
-configuration = "0.1.5"
-coroutines = "1.7.3"
-gradleVersions = "0.50.0"
-kotlin = "1.9.21"
-publish = "0.25.3"
+binaryCompat = "0.14.0"
+configuration = "0.2.1"
+coroutines = "1.8.0"
+kotlin = "1.9.23"
+publish = "0.27.0"
 
 [libraries]
 gradle-kmp-configuration = { module = "io.matthewnelson:gradle-kmp-configuration-plugin", version.ref = "configuration" }
@@ -16,5 +15,4 @@ kotlin-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-te
 
 [plugins]
 binaryCompat = { id = "org.jetbrains.kotlinx.binary-compatibility-validator", version.ref = "binaryCompat" }
-gradleVersions = { id = "com.github.ben-manes.versions", version.ref = "gradleVersions" }
 multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }

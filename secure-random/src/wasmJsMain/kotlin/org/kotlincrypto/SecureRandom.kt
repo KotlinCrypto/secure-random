@@ -18,6 +18,8 @@
 package org.kotlincrypto
 
 import org.khronos.webgl.Int8Array
+import org.khronos.webgl.get
+import org.khronos.webgl.set
 import org.kotlincrypto.internal.commonNextBytesOf
 import org.kotlincrypto.internal.ifNotNullOrEmpty
 
@@ -47,7 +49,7 @@ public actual class SecureRandom public actual constructor() {
     public actual fun nextBytesCopyTo(bytes: ByteArray?) {
         bytes.ifNotNullOrEmpty {
             try {
-                val array = unsafeCast<Int8Array>()
+                val array = Int8Array(size)
 
                 if (isNode) {
                     crypto.randomFillSync(array)
@@ -58,6 +60,11 @@ public actual class SecureRandom public actual constructor() {
                         crypto.getRandomValues(array.subarray(offset, offset + len))
                         offset += len
                     }
+                }
+
+                for (i in indices) {
+                    this[i] = array[i]
+                    array[i] = 0
                 }
             } catch (t: Throwable) {
                 throw SecRandomCopyException("Failed to obtain bytes", t)
@@ -72,9 +79,7 @@ public actual class SecureRandom public actual constructor() {
 }
 
 private fun cryptoNode(): Crypto = js("eval('require')('crypto')")
-    .unsafeCast<Crypto>()
 private fun cryptoBrowser(): Crypto = js("(window ? (window.crypto ? window.crypto : window.msCrypto) : self.crypto)")
-    .unsafeCast<Crypto>()
 
 private fun isNodeJs(): Boolean = js(
     """
@@ -86,9 +91,9 @@ private fun isNodeJs(): Boolean = js(
     && window.process.versions != null 
     && window.process.versions.node != null)
 """
-) as Boolean
+)
 
-private external class Crypto {
+private external class Crypto: JsAny {
     // Browser
     fun getRandomValues(array: Int8Array)
     // Node.js
