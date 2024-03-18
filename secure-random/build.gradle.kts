@@ -18,7 +18,7 @@ plugins {
 }
 
 kmpConfiguration {
-    configureShared(publish = true) {
+    configureShared(java9ModuleName = "org.kotlincrypto", publish = true) {
         linuxX64 {
             sourceSetTest {
                 dependencies {
