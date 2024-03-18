@@ -8,6 +8,7 @@
 ![badge-platform-jvm]
 ![badge-platform-js]
 ![badge-platform-js-node]
+![badge-platform-wasm]
 ![badge-platform-linux]
 ![badge-platform-macos]
 ![badge-platform-ios]
@@ -19,18 +20,14 @@
 ![badge-support-js-ir]
 ![badge-support-linux-arm]
 
-<!--
-![badge-platform-wasm]
--->
-
 Kotlin Multiplatform library for obtaining cryptographically 
 secure random data from the system. 
 
 NOTE: For Jvm, `SecureRandom` extends `java.security.SecureRandom` 
 for interoperability.
 
-The Linux/AndroidNative implementation was Heavily inspired by the 
-[rust-random/getrandom][url-rust-random] crate.
+The Linux/AndroidNative implementation was heavily inspired by  
+[rust-random/getrandom][url-rust-random].
 
 ### Example Usages
 
@@ -80,7 +77,7 @@ The best way to keep `KotlinCrypto` dependencies up to date is by using the
 ```kotlin
 // build.gradle.kts
 dependencies {
-    implementation("org.kotlincrypto:secure-random:0.2.0")
+    implementation("org.kotlincrypto:secure-random:0.3.0")
 }
 ```
 
@@ -89,16 +86,16 @@ dependencies {
 ```groovy
 // build.gradle
 dependencies {
-    implementation "org.kotlincrypto:secure-random:0.2.0"
+    implementation "org.kotlincrypto:secure-random:0.3.0"
 }
 ```
 
 <!-- TAG_VERSION -->
-[badge-latest-release]: https://img.shields.io/badge/latest--release-0.2.0-blue.svg?style=flat
+[badge-latest-release]: https://img.shields.io/badge/latest--release-0.3.0-blue.svg?style=flat
 [badge-license]: https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg?style=flat
 
 <!-- TAG_DEPENDENCIES -->
-[badge-kotlin]: https://img.shields.io/badge/kotlin-1.9.21-blue.svg?logo=kotlin
+[badge-kotlin]: https://img.shields.io/badge/kotlin-1.9.23-blue.svg?logo=kotlin
 
 <!-- TAG_PLATFORMS -->
 [badge-platform-android]: http://img.shields.io/badge/-android-6EDB8D.svg?style=flat
