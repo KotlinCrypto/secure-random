@@ -39,8 +39,8 @@ public actual class SecureRandom public actual constructor() {
      * Fills a [ByteArray] with securely generated random data.
      * Does nothing if [bytes] is null or empty.
      *
-     * Node: https://nodejs.org/api/crypto.html#cryptorandomfillsyncbuffer-offset-size
-     * Browser: https://developer.mozilla.org/docs/Web/API/Crypto/getRandomValues
+     * - [docs-node](https://nodejs.org/api/crypto.html#cryptorandomfillsyncbuffer-offset-size)
+     * - [docs-browser](https://developer.mozilla.org/docs/Web/API/Crypto/getRandomValues)
      *
      * @throws [SecRandomCopyException] if procurement of securely random data failed.
      * */

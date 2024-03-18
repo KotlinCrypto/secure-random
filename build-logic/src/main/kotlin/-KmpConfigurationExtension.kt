@@ -46,7 +46,12 @@ fun KmpConfigurationExtension.configureShared(
                 nodejs()
             }
         }
-//        wasmWasi {}
+        @OptIn(ExperimentalWasmDsl::class)
+        wasmWasi {
+            target {
+                nodejs()
+            }
+        }
 
         androidNativeAll()
 
