@@ -54,7 +54,9 @@ public actual class SecureRandom public actual constructor() {
                 }
 
                 for (i in indices) {
-                    this[i] = (ptr + i).loadByte()
+                    val point = ptr.plus(i)
+                    this[i] = point.loadByte()
+                    point.storeByte(0)
                 }
             }
         }
