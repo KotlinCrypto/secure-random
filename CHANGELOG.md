@@ -1,6 +1,10 @@
 # CHANGELOG
 
-## Version 0.2.0 (2024-03-18)
+## Version 0.3.1 (2024-03-20)
+ - Fix `js.nodejs` and `wasmJs.nodejs` array type exception [[#14]][14]
+ - Ensure `wasmWasi` temporary array is back-filled when copying bytes [[#16]][16]
+
+## Version 0.3.0 (2024-03-18)
  - Updates dependencies
      - Kotlin `1.9.21` -> `1.9.23`
  - Fix `ClassCastException` for `js.nodejs` [[#12]][12]
@@ -25,3 +29,5 @@
 
 [12]: https://github.com/KotlinCrypto/secure-random/pull/12
 [13]: https://github.com/KotlinCrypto/secure-random/pull/13
+[14]: https://github.com/KotlinCrypto/secure-random/pull/14
+[16]: https://github.com/KotlinCrypto/secure-random/pull/16
