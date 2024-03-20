@@ -17,7 +17,7 @@
 
 package org.kotlincrypto
 
-import org.khronos.webgl.Int8Array
+import org.khronos.webgl.Uint8Array
 import org.khronos.webgl.get
 import org.khronos.webgl.set
 import org.kotlincrypto.internal.commonNextBytesOf
@@ -48,9 +48,9 @@ public actual class SecureRandom public actual constructor() {
      * */
     public actual fun nextBytesCopyTo(bytes: ByteArray?) {
         bytes.ifNotNullOrEmpty {
-            try {
-                val array = Int8Array(size)
+            val array = Uint8Array(size)
 
+            try {
                 if (isNode) {
                     crypto.randomFillSync(array)
                 } else {
@@ -61,13 +61,13 @@ public actual class SecureRandom public actual constructor() {
                         offset += len
                     }
                 }
-
-                for (i in indices) {
-                    this[i] = array[i]
-                    array[i] = 0
-                }
             } catch (t: Throwable) {
                 throw SecRandomCopyException("Failed to obtain bytes", t)
+            }
+
+            for (i in indices) {
+                this[i] = array[i]
+                array[i] = 0
             }
         }
     }
@@ -95,7 +95,7 @@ private fun isNodeJs(): Boolean = js(
 
 private external class Crypto: JsAny {
     // Browser
-    fun getRandomValues(array: Int8Array)
+    fun getRandomValues(array: Uint8Array)
     // Node.js
-    fun randomFillSync(array: Int8Array)
+    fun randomFillSync(buf: Uint8Array)
 }
