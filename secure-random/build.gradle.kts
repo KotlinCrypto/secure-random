@@ -22,13 +22,13 @@ kmpConfiguration {
         linuxX64 {
             sourceSetTest {
                 dependencies {
-                    implementation(libs.kotlin.coroutines.test)
+                    implementation(libs.kotlinx.coroutines.test)
                 }
             }
         }
 
         kotlin {
-            sourceSets {
+            with(sourceSets) {
                 val linuxMain = findByName("linuxMain")
                 val androidNativeMain = findByName("androidNativeMain")
 
