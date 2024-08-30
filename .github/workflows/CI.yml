@@ -48,16 +48,23 @@ jobs:
           distribution: 'zulu'
           java-version: 11
 
+      - name: Check API Compatibility
+        if: matrix.os == 'macos-latest'
+        run: >
+          ./gradlew apiCheck --stacktrace
+
       - name: Run macOS Tests
         if: matrix.os == 'macos-latest'
         run: >
           ./gradlew check --stacktrace
           -PKMP_TARGETS="JVM,JS,IOS_ARM64,IOS_X64,IOS_SIMULATOR_ARM64,MACOS_ARM64,MACOS_X64,TVOS_ARM64,TVOS_X64,TVOS_SIMULATOR_ARM64,WATCHOS_ARM32,WATCHOS_ARM64,WATCHOS_DEVICE_ARM64,WATCHOS_X64,WATCHOS_SIMULATOR_ARM64,WASM_JS,WASM_WASI"
+
       - name: Run Linux Tests
         if: matrix.os == 'ubuntu-latest'
         run: >
           ./gradlew check --stacktrace
           -PKMP_TARGETS="JVM,JS,ANDROID,ANDROID_ARM32,ANDROID_ARM64,ANDROID_X64,ANDROID_X86,LINUX_ARM64,LINUX_X64,WASM_JS,WASM_WASI"
+
       - name: Run Windows Tests
         if: matrix.os == 'windows-latest'
         run: >
