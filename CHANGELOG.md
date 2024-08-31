@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## Version 0.3.2 (2024-08-31)
+ - Updates dependencies
+     - Kotlin `1.9.23` -> `1.9.24`
+ - Fixes multiplatform metadata manifest `unique_name` parameter for 
+   all source sets to be truly unique. [[#19]][19]
+ - Updates jvm `.kotlin_module` with truly unique file name. [[#19]][19]
+
 ## Version 0.3.1 (2024-03-20)
  - Fix `js.nodejs` and `wasmJs.nodejs` array type exception [[#14]][14]
  - Ensure `wasmWasi` temporary array is back-filled when copying bytes [[#16]][16]
@@ -31,3 +38,4 @@
 [13]: https://github.com/KotlinCrypto/secure-random/pull/13
 [14]: https://github.com/KotlinCrypto/secure-random/pull/14
 [16]: https://github.com/KotlinCrypto/secure-random/pull/16
+[19]: https://github.com/KotlinCrypto/secure-random/pull/19
