@@ -18,8 +18,7 @@ if (CHECK_PUBLICATION != null) {
     listOf(
         "secure-random",
     ).forEach { name ->
-        // TODO: :library Issue #22
-        include(":$name")
+        include(":library:$name")
     }
 
     include(":benchmarks")
