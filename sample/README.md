@@ -1,7 +1,7 @@
 # SecureRandom Sample App
 
-Simple application that will use `SecureRandom` to generate and 
-then print random bytes.
+<!-- TODO: CryptoRand Issue #23 -->
+Simple application that will use `SecureRandom` to generate and then print random bytes.
 
 ### Running
 
@@ -12,5 +12,5 @@ Java:
 
 Native:
 ```shell
-./gradlew :sample:runDebugExecutableNativeSample -PKMP_TARGETS="LINUX_ARM64,LINUX_X64,MACOS_ARM64,MACOS_X64,MINGW_X64"
+./gradlew :sample:runDebugExecutableNativeHost -PKMP_TARGETS="LINUX_ARM64,LINUX_X64,MACOS_ARM64,MACOS_X64,MINGW_X64"
 ```
