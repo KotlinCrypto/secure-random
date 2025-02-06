@@ -17,6 +17,7 @@ import org.jetbrains.kotlin.gradle.targets.js.yarn.YarnPlugin
 import org.jetbrains.kotlin.gradle.targets.js.yarn.YarnRootExtension
 
 plugins {
+    alias(libs.plugins.benchmark) apply(false)
     alias(libs.plugins.binary.compat)
     alias(libs.plugins.kotlin.multiplatform) apply(false)
 }
@@ -44,6 +45,7 @@ apiValidation {
     if (findProperty("CHECK_PUBLICATION") != null) {
         ignoredProjects.add("check-publication")
     } else {
+        ignoredProjects.add("benchmarks")
         ignoredProjects.add("sample")
     }
 }
