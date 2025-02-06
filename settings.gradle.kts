@@ -15,6 +15,13 @@ private val CHECK_PUBLICATION: String? by settings
 if (CHECK_PUBLICATION != null) {
     include(":tools:check-publication")
 } else {
-    include(":secure-random")
+    listOf(
+        "secure-random",
+    ).forEach { name ->
+        // TODO: :library Issue #22
+        include(":$name")
+    }
+
+    include(":benchmarks")
     include(":sample")
 }
