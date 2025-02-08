@@ -1,0 +1,28 @@
+// Klib ABI Dump
+// Targets: [androidNativeArm32, androidNativeArm64, androidNativeX64, androidNativeX86, iosArm64, iosSimulatorArm64, iosX64, js, linuxArm64, linuxX64, macosArm64, macosX64, mingwX64, tvosArm64, tvosSimulatorArm64, tvosX64, wasmJs, wasmWasi, watchosArm32, watchosArm64, watchosDeviceArm64, watchosSimulatorArm64, watchosX64]
+// Rendering settings:
+// - Signature version: 2
+// - Show manifest properties: true
+// - Show declarations: true
+
+// Library unique name: <org.kotlincrypto:crypto-rand>
+open annotation class org.kotlincrypto.crypto.rand/DelicateCryptoRandApi : kotlin/Annotation { // org.kotlincrypto.crypto.rand/DelicateCryptoRandApi|null[0]
+    constructor <init>() // org.kotlincrypto.crypto.rand/DelicateCryptoRandApi.<init>|<init>(){}[0]
+}
+
+abstract class org.kotlincrypto.crypto.rand/CryptoRand { // org.kotlincrypto.crypto.rand/CryptoRand|null[0]
+    constructor <init>() // org.kotlincrypto.crypto.rand/CryptoRand.<init>|<init>(){}[0]
+
+    abstract fun nextBytes(kotlin/ByteArray): kotlin/ByteArray // org.kotlincrypto.crypto.rand/CryptoRand.nextBytes|nextBytes(kotlin.ByteArray){}[0]
+
+    final object Default : org.kotlincrypto.crypto.rand/CryptoRand { // org.kotlincrypto.crypto.rand/CryptoRand.Default|null[0]
+        final fun nextBytes(kotlin/ByteArray): kotlin/ByteArray // org.kotlincrypto.crypto.rand/CryptoRand.Default.nextBytes|nextBytes(kotlin.ByteArray){}[0]
+    }
+}
+
+final class org.kotlincrypto.crypto.rand/RNGException : org.kotlincrypto.error/GeneralSecurityException { // org.kotlincrypto.crypto.rand/RNGException|null[0]
+    constructor <init>() // org.kotlincrypto.crypto.rand/RNGException.<init>|<init>(){}[0]
+    constructor <init>(kotlin/String?) // org.kotlincrypto.crypto.rand/RNGException.<init>|<init>(kotlin.String?){}[0]
+    constructor <init>(kotlin/String?, kotlin/Throwable?) // org.kotlincrypto.crypto.rand/RNGException.<init>|<init>(kotlin.String?;kotlin.Throwable?){}[0]
+    constructor <init>(kotlin/Throwable?) // org.kotlincrypto.crypto.rand/RNGException.<init>|<init>(kotlin.Throwable?){}[0]
+}

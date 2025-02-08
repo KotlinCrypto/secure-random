@@ -14,16 +14,14 @@
  * limitations under the License.
  **/
 
-import org.kotlincrypto.SecRandomCopyException
-import org.kotlincrypto.SecureRandom
+import org.kotlincrypto.crypto.rand.CryptoRand
+import org.kotlincrypto.crypto.rand.RNGException
 
 fun main() {
-    val sRandom = SecureRandom()
-
     for (i in 10..20) {
         val bytes = try {
-            sRandom.nextBytesOf(i).toList()
-        } catch (e: SecRandomCopyException) {
+            CryptoRand.Default.nextBytes(ByteArray(i)).toList()
+        } catch (e: RNGException) {
             e.printStackTrace()
             return
         }
@@ -38,8 +36,8 @@ fun main() {
     ).forEach { i ->
 
         try {
-            sRandom.nextBytesOf(i)
-        } catch (e: SecRandomCopyException) {
+            CryptoRand.Default.nextBytes(ByteArray(i)).toList()
+        } catch (e: RNGException) {
             e.printStackTrace()
             return
         }

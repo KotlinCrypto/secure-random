@@ -1,7 +1,6 @@
 # SecureRandom Sample App
 
-<!-- TODO: CryptoRand Issue #23 -->
-Simple application that will use `SecureRandom` to generate and then print random bytes.
+Simple application that will use `CryptoRand.Default` to generate and then print random bytes.
 
 ### Running
 

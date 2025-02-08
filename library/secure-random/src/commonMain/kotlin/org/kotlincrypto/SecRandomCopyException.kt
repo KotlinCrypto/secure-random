@@ -15,6 +15,7 @@
  **/
 package org.kotlincrypto
 
+@Deprecated("Deprecated in favor of CryptoRand. See https://github.com/KotlinCrypto/crypto-rand")
 public class SecRandomCopyException: RuntimeException {
     public constructor(): super()
     public constructor(message: String?): super(message)
