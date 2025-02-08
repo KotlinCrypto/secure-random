@@ -46,6 +46,8 @@ open class CryptoRandUnitTest {
             webLimit,
             webLimit + 1,
             webLimit * 2,
+            // To ensure remainder logic is working properly for JS/WasmJS
+            (webLimit * 2) + 6_000,
         ).forEach { size ->
             val zeroCount = cryptoRand.nextBytes(buf = ByteArray(size)).count { it == 0.toByte() }
 
