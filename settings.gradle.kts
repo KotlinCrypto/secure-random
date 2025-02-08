@@ -16,6 +16,7 @@ if (CHECK_PUBLICATION != null) {
     include(":tools:check-publication")
 } else {
     listOf(
+        "crypto-rand",
         "secure-random",
     ).forEach { name ->
         include(":library:$name")

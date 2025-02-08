@@ -56,7 +56,7 @@ kmpConfiguration {
         common {
             sourceSetMain {
                 dependencies {
-                    implementation(project(":library:secure-random"))
+                    implementation(project(":library:crypto-rand"))
                 }
             }
         }

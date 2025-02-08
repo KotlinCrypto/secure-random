@@ -13,13 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  **/
-@file:Suppress("EXPECT_ACTUAL_CLASSIFIERS_ARE_IN_BETA_WARNING")
+@file:Suppress("EXPECT_ACTUAL_CLASSIFIERS_ARE_IN_BETA_WARNING", "DEPRECATION")
 
 package org.kotlincrypto
 
 /**
  * A cryptographically strong random number generator (RNG).
  * */
+@Deprecated("Deprecated in favor of CryptoRand. See https://github.com/KotlinCrypto/crypto-rand")
 public expect class SecureRandom() {
 
     /**

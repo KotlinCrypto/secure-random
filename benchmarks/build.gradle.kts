@@ -54,7 +54,7 @@ kmpConfiguration {
             sourceSetMain {
                 dependencies {
                     implementation(libs.benchmark.runtime)
-                    implementation(project(":library:secure-random"))
+                    implementation(project(":library:crypto-rand"))
                 }
             }
         }

@@ -1,7 +1,6 @@
 # benchmarks
 
-<!-- TODO: CryptoRand Issue #23 -->
-Benchmarks for tracking performance of `SecureRandom` implementation.
+Benchmarks for tracking performance of `CryptoRand` implementation.
 
 **NOTE:** Benchmarking is run on every Pull Request. Results can be viewed for each
 workflow run on the [GitHub Actions][url-actions] tab of the repository.
@@ -31,5 +30,4 @@ workflow run on the [GitHub Actions][url-actions] tab of the repository.
   ./gradlew nativeHostBenchmark
   ```
 
-<!-- TODO: CryptoRand Issue #23 -->
-[url-actions]: https://github.com/KotlinCrypto/secure-random/actions/
+[url-actions]: https://github.com/KotlinCrypto/crypto-rand/actions/

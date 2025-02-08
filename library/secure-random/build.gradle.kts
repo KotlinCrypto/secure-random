@@ -19,33 +19,9 @@ plugins {
 
 kmpConfiguration {
     configureShared(java9ModuleName = "org.kotlincrypto", publish = true) {
-        linuxX64 {
-            sourceSetTest {
-                dependencies {
-                    implementation(libs.kotlinx.coroutines.test)
-                }
-            }
-        }
-
         kotlin {
-            with(sourceSets) {
-                val linuxMain = findByName("linuxMain")
-                val androidNativeMain = findByName("androidNativeMain")
-
-                if (linuxMain != null || androidNativeMain != null) {
-                    val linuxAndroidMain = maybeCreate("linuxAndroidMain").apply {
-                        dependsOn(getByName("nativeMain"))
-                    }
-                    val linuxAndroidTest = maybeCreate("linuxAndroidTest").apply {
-                        dependsOn(getByName("nativeTest"))
-                    }
-
-                    linuxMain?.apply { dependsOn(linuxAndroidMain) }
-                    findByName("linuxTest")?.apply { dependsOn(linuxAndroidTest) }
-
-                    androidNativeMain?.apply { dependsOn(linuxAndroidMain) }
-                    findByName("androidNativeTest")?.apply { dependsOn(linuxAndroidTest) }
-                }
+            sourceSets.findByName("nonJvmMain")?.dependencies {
+                implementation(project(":library:crypto-rand"))
             }
         }
     }
