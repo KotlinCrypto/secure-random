@@ -3,3 +3,7 @@ build/
 *.iml
 .idea/
 local.properties
+.kotlin/
+
+gh-pages/*
+!gh-pages/publish.sh

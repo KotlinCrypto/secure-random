@@ -13,6 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  **/
+@file:Suppress("UnnecessaryOptInAnnotation")
+
 package org.kotlincrypto.random.internal
 
 import kotlinx.cinterop.*
@@ -22,8 +24,8 @@ import org.kotlincrypto.random.RandomnessProcurementException
 
 @Throws(RandomnessProcurementException::class)
 internal actual fun ByteArray.cryptoRandFill() {
-    @OptIn(ExperimentalForeignApi::class)
-    val status: Int = usePinned { pinned ->
+    @OptIn(ExperimentalForeignApi::class, UnsafeNumber::class)
+    val status = usePinned { pinned ->
         // kSecRandomDefault is synonymous to NULL
         SecRandomCopyBytes(kSecRandomDefault, size.toUInt().convert(), pinned.addressOf(0))
     }
