@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## Version 0.4.0 (2025-02-09)
+ - Adds module `crypto-rand` with new `CryptoRand` implementation [[#28]][28] [[#29]][29]
+ - Deprecates `SecureRandom` in favor of `CryptoRand` [[#28]][28]
+     - NOTE: This will be the final release for the `org.kotlincrypto:secure-random` publication.
+ - Adds `dokka` documentation at `https://random.kotlincrypto.org` [[#28]][28]
+ - Adds benchmarking to repository [[#26]][26]
+
 ## Version 0.3.2 (2024-08-31)
  - Updates dependencies
      - Kotlin `1.9.23` -> `1.9.24`
@@ -34,8 +41,11 @@
 ## Version 0.1.0 (2023-03-07)
  - Initial Release
 
-[12]: https://github.com/KotlinCrypto/secure-random/pull/12
-[13]: https://github.com/KotlinCrypto/secure-random/pull/13
-[14]: https://github.com/KotlinCrypto/secure-random/pull/14
-[16]: https://github.com/KotlinCrypto/secure-random/pull/16
-[19]: https://github.com/KotlinCrypto/secure-random/pull/19
+[12]: https://github.com/KotlinCrypto/random/pull/12
+[13]: https://github.com/KotlinCrypto/random/pull/13
+[14]: https://github.com/KotlinCrypto/random/pull/14
+[16]: https://github.com/KotlinCrypto/random/pull/16
+[19]: https://github.com/KotlinCrypto/random/pull/19
+[26]: https://github.com/KotlinCrypto/random/pull/26
+[28]: https://github.com/KotlinCrypto/random/pull/28
+[29]: https://github.com/KotlinCrypto/random/pull/29
