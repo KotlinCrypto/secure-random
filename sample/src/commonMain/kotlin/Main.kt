@@ -14,14 +14,14 @@
  * limitations under the License.
  **/
 
-import org.kotlincrypto.crypto.rand.CryptoRand
-import org.kotlincrypto.crypto.rand.RNGException
+import org.kotlincrypto.random.CryptoRand
+import org.kotlincrypto.random.RandomnessProcurementException
 
 fun main() {
     for (i in 10..20) {
         val bytes = try {
             CryptoRand.Default.nextBytes(ByteArray(i)).toList()
-        } catch (e: RNGException) {
+        } catch (e: RandomnessProcurementException) {
             e.printStackTrace()
             return
         }
@@ -37,7 +37,7 @@ fun main() {
 
         try {
             CryptoRand.Default.nextBytes(ByteArray(i)).toList()
-        } catch (e: RNGException) {
+        } catch (e: RandomnessProcurementException) {
             e.printStackTrace()
             return
         }

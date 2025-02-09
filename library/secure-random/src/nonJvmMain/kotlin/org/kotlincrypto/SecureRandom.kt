@@ -17,15 +17,15 @@
 
 package org.kotlincrypto
 
-import org.kotlincrypto.crypto.rand.CryptoRand
-import org.kotlincrypto.crypto.rand.RNGException
+import org.kotlincrypto.random.CryptoRand
+import org.kotlincrypto.random.RandomnessProcurementException
 import org.kotlincrypto.internal.commonNextBytesOf
 import org.kotlincrypto.internal.ifNotNullOrEmpty
 
 /**
  * A cryptographically strong random number generator (RNG).
  * */
-@Deprecated("Deprecated in favor of CryptoRand. See https://github.com/KotlinCrypto/crypto-rand")
+@Deprecated("Deprecated in favor of CryptoRand. See https://github.com/KotlinCrypto/random")
 public actual class SecureRandom {
 
     /**
@@ -49,7 +49,7 @@ public actual class SecureRandom {
         bytes.ifNotNullOrEmpty {
             try {
                 CryptoRand.Default.nextBytes(this)
-            } catch (e: RNGException) {
+            } catch (e: RandomnessProcurementException) {
                 throw SecRandomCopyException(e.message ?: "Failed to obtain requested amount of bytes")
             }
         }

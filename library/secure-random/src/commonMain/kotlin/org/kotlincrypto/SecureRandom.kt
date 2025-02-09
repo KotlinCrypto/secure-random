@@ -20,7 +20,7 @@ package org.kotlincrypto
 /**
  * A cryptographically strong random number generator (RNG).
  * */
-@Deprecated("Deprecated in favor of CryptoRand. See https://github.com/KotlinCrypto/crypto-rand")
+@Deprecated("Deprecated in favor of CryptoRand. See https://github.com/KotlinCrypto/random")
 public expect class SecureRandom() {
 
     /**

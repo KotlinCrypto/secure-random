@@ -1,4 +1,4 @@
-# secure-random
+# random
 [![badge-license]][url-license]
 [![badge-latest-release]][url-latest-release]
 
@@ -21,54 +21,20 @@
 ![badge-support-js-ir]
 ![badge-support-linux-arm]
 
-Kotlin Multiplatform library for obtaining cryptographically 
-secure random data from the system. 
+A Kotlin Multiplatform library for obtaining cryptographically secure random data.
 
-NOTE: For Jvm, `SecureRandom` extends `java.security.SecureRandom` 
-for interoperability.
+The Linux/AndroidNative implementation was heavily inspired by [rust-random/getrandom][url-rust-random].
 
-The Linux/AndroidNative implementation was heavily inspired by  
-[rust-random/getrandom][url-rust-random].
+### Modules
 
-### Example Usages
+ - [crypto-rand](library/crypto-rand/README.md)
+ - [sample](sample/README.md)
 
-```kotlin
-fun main() {
-    val sRandom = SecureRandom()
+### API Docs
 
-    val bytes: ByteArray = try {
-        sRandom.nextBytesOf(count = 20)
-    } catch (e: SecRandomCopyException) {
-        e.printStackTrace()
-        return
-    }
-
-    println(bytes.toList())
-}
-```
-
-```kotlin
-fun main() {
-    val sRandom = SecureRandom()
-    val bytes = ByteArray(20)
-    
-    try {
-        sRandom.nextBytesCopyTo(bytes)
-    } catch (e: SecRandomCopyException) {
-        e.printStackTrace()
-        return
-    }
-
-    println(bytes.toList())
-}
-```
-
-### Samples
-
-See the [sample](sample/README.md) 
+ - [https://random.kotlincrypto.org][url-docs]
 
 ### Get Started
-
 
 The best way to keep `KotlinCrypto` dependencies up to date is by using the 
 [version-catalog][url-version-catalog]. Alternatively, see below.
@@ -82,14 +48,14 @@ dependencies {
 }
 ```
 
-<!-- TAG_VERSION -->
-
-```groovy
-// build.gradle
+<!-- TODO: Replace
+```kotlin
+// build.gradle.kts
 dependencies {
-    implementation "org.kotlincrypto:secure-random:0.3.2"
+    implementation("org.kotlincrypto.random:crypto-rand:0.4.0")
 }
 ```
+-->
 
 <!-- TAG_VERSION -->
 [badge-latest-release]: https://img.shields.io/badge/latest--release-0.3.2-blue.svg?style=flat
@@ -116,9 +82,10 @@ dependencies {
 [badge-support-js-ir]: https://img.shields.io/badge/support-[js--IR]-AAC4E0.svg?style=flat
 [badge-support-linux-arm]: http://img.shields.io/badge/support-[LinuxArm]-2D3F6C.svg?style=flat
 
-[url-latest-release]: https://github.com/KotlinCrypto/secure-random/releases/latest
+[url-latest-release]: https://github.com/KotlinCrypto/random/releases/latest
 [url-license]: https://www.apache.org/licenses/LICENSE-2.0.txt
 [url-kotlin]: https://kotlinlang.org
 [url-rust-random]: https://github.com/rust-random/getrandom
 [url-version-catalog]: https://github.com/KotlinCrypto/version-catalog
 [url-error]: https://github.com/KotlinCrypto/error
+[url-docs]: https://random.kotlincrypto.org

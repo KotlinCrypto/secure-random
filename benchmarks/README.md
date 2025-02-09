@@ -30,4 +30,4 @@ workflow run on the [GitHub Actions][url-actions] tab of the repository.
   ./gradlew nativeHostBenchmark
   ```
 
-[url-actions]: https://github.com/KotlinCrypto/crypto-rand/actions/
+[url-actions]: https://github.com/KotlinCrypto/random/actions/

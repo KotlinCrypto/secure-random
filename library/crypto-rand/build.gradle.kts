@@ -18,8 +18,10 @@ plugins {
 }
 
 kmpConfiguration {
-    configureShared(java9ModuleName = "org.kotlincrypto.crypto.rand", publish = true) {
+    configureShared(java9ModuleName = "org.kotlincrypto.random", publish = true) {
         common {
+            pluginIds("dokka")
+
             sourceSetMain {
                 dependencies {
                     api(libs.kotlincrypto.error)
@@ -45,28 +47,6 @@ kmpConfiguration {
 
                     androidNativeMain?.apply { dependsOn(linuxAndroidMain) }
                     findByName("androidNativeTest")?.apply { dependsOn(linuxAndroidTest) }
-                }
-            }
-        }
-
-        kotlin {
-            with(sourceSets) {
-                val jsMain = findByName("jsMain")
-                val wasmJsMain = findByName("wasmJsMain")
-
-                if (jsMain != null || wasmJsMain != null) {
-                    val jsWasmJsMain = maybeCreate("jsWasmJsMain").apply {
-                        dependsOn(getByName("nonJvmMain"))
-                    }
-                    val jsWasmJsTest = maybeCreate("jsWasmJsTest").apply {
-                        dependsOn(getByName("nonJvmTest"))
-                    }
-
-                    jsMain?.apply { dependsOn(jsWasmJsMain) }
-                    findByName("linuxTest")?.apply { dependsOn(jsWasmJsTest) }
-
-                    wasmJsMain?.apply { dependsOn(jsWasmJsMain) }
-                    findByName("androidNativeTest")?.apply { dependsOn(jsWasmJsTest) }
                 }
             }
         }
