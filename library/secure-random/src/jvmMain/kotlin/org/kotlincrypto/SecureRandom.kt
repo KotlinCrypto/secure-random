@@ -25,7 +25,7 @@ import org.kotlincrypto.internal.ifNotNullOrEmpty
  *
  * @see [java.security.SecureRandom]
  * */
-@Deprecated("Deprecated in favor of CryptoRand. See https://github.com/KotlinCrypto/crypto-rand")
+@Deprecated("Deprecated in favor of CryptoRand. See https://github.com/KotlinCrypto/random")
 public actual class SecureRandom public actual constructor(): java.security.SecureRandom() {
 
     /**

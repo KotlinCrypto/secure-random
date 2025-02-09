@@ -18,7 +18,7 @@
 package org.kotlincrypto.benchmarks
 
 import kotlinx.benchmark.*
-import org.kotlincrypto.crypto.rand.CryptoRand
+import org.kotlincrypto.random.CryptoRand
 
 @State(Scope.Benchmark)
 @BenchmarkMode(Mode.AverageTime)

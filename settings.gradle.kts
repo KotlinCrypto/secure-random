@@ -1,4 +1,4 @@
-rootProject.name = "secure-random"
+rootProject.name = "random"
 
 pluginManagement {
     repositories {

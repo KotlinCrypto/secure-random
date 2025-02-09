@@ -5,24 +5,25 @@
 // - Show manifest properties: true
 // - Show declarations: true
 
-// Library unique name: <org.kotlincrypto:crypto-rand>
-open annotation class org.kotlincrypto.crypto.rand/DelicateCryptoRandApi : kotlin/Annotation { // org.kotlincrypto.crypto.rand/DelicateCryptoRandApi|null[0]
-    constructor <init>() // org.kotlincrypto.crypto.rand/DelicateCryptoRandApi.<init>|<init>(){}[0]
+// Library unique name: <org.kotlincrypto.random:crypto-rand>
+open annotation class org.kotlincrypto.random/DelicateCryptoRandApi : kotlin/Annotation { // org.kotlincrypto.random/DelicateCryptoRandApi|null[0]
+    constructor <init>() // org.kotlincrypto.random/DelicateCryptoRandApi.<init>|<init>(){}[0]
 }
 
-abstract class org.kotlincrypto.crypto.rand/CryptoRand { // org.kotlincrypto.crypto.rand/CryptoRand|null[0]
-    constructor <init>() // org.kotlincrypto.crypto.rand/CryptoRand.<init>|<init>(){}[0]
+abstract class org.kotlincrypto.random/CryptoRand { // org.kotlincrypto.random/CryptoRand|null[0]
+    constructor <init>() // org.kotlincrypto.random/CryptoRand.<init>|<init>(){}[0]
 
-    abstract fun nextBytes(kotlin/ByteArray): kotlin/ByteArray // org.kotlincrypto.crypto.rand/CryptoRand.nextBytes|nextBytes(kotlin.ByteArray){}[0]
+    abstract fun nextBytes(kotlin/ByteArray): kotlin/ByteArray // org.kotlincrypto.random/CryptoRand.nextBytes|nextBytes(kotlin.ByteArray){}[0]
 
-    final object Default : org.kotlincrypto.crypto.rand/CryptoRand { // org.kotlincrypto.crypto.rand/CryptoRand.Default|null[0]
-        final fun nextBytes(kotlin/ByteArray): kotlin/ByteArray // org.kotlincrypto.crypto.rand/CryptoRand.Default.nextBytes|nextBytes(kotlin.ByteArray){}[0]
+    final object Default : org.kotlincrypto.random/CryptoRand { // org.kotlincrypto.random/CryptoRand.Default|null[0]
+        final fun nextBytes(kotlin/ByteArray): kotlin/ByteArray // org.kotlincrypto.random/CryptoRand.Default.nextBytes|nextBytes(kotlin.ByteArray){}[0]
+        final fun toString(): kotlin/String // org.kotlincrypto.random/CryptoRand.Default.toString|toString(){}[0]
     }
 }
 
-final class org.kotlincrypto.crypto.rand/RNGException : org.kotlincrypto.error/GeneralSecurityException { // org.kotlincrypto.crypto.rand/RNGException|null[0]
-    constructor <init>() // org.kotlincrypto.crypto.rand/RNGException.<init>|<init>(){}[0]
-    constructor <init>(kotlin/String?) // org.kotlincrypto.crypto.rand/RNGException.<init>|<init>(kotlin.String?){}[0]
-    constructor <init>(kotlin/String?, kotlin/Throwable?) // org.kotlincrypto.crypto.rand/RNGException.<init>|<init>(kotlin.String?;kotlin.Throwable?){}[0]
-    constructor <init>(kotlin/Throwable?) // org.kotlincrypto.crypto.rand/RNGException.<init>|<init>(kotlin.Throwable?){}[0]
+final class org.kotlincrypto.random/RandomnessProcurementException : org.kotlincrypto.error/GeneralSecurityException { // org.kotlincrypto.random/RandomnessProcurementException|null[0]
+    constructor <init>() // org.kotlincrypto.random/RandomnessProcurementException.<init>|<init>(){}[0]
+    constructor <init>(kotlin/String?) // org.kotlincrypto.random/RandomnessProcurementException.<init>|<init>(kotlin.String?){}[0]
+    constructor <init>(kotlin/String?, kotlin/Throwable?) // org.kotlincrypto.random/RandomnessProcurementException.<init>|<init>(kotlin.String?;kotlin.Throwable?){}[0]
+    constructor <init>(kotlin/Throwable?) // org.kotlincrypto.random/RandomnessProcurementException.<init>|<init>(kotlin.Throwable?){}[0]
 }

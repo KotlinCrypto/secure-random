@@ -1,6 +1,6 @@
-module org.kotlincrypto.crypto.rand {
+module org.kotlincrypto.random {
     requires transitive kotlin.stdlib;
     requires transitive org.kotlincrypto.error;
 
-    exports org.kotlincrypto.crypto.rand;
+    exports org.kotlincrypto.random;
 }
