@@ -40,7 +40,6 @@ kmpConfiguration {
             sourceSetMain {
                 dependencies {
                     implementation("$group:crypto-rand:$version")
-                    implementation("org.kotlincrypto:secure-random:$version")
                 }
             }
         }
